@@ -1,6 +1,7 @@
 import './App.css'
 import {useState, useEffect} from 'react'
 import MovieCard from "./components/MovieCard";
+import Filter from "./components/Filter";
 
 function App() {
 
@@ -21,10 +22,12 @@ function App() {
 
   return (
     <div className="container">
-      {card.map((movie)=>{
-        return <MovieCard key={movie.id} movie={movie}/>
-      })}
-      
+      <Filter />
+        <div className="movies-block">
+        {card.map((movie)=>{
+          return <MovieCard key={movie.id} movie={movie}/>
+        })}
+      </div>
     </div>
   );
 }
