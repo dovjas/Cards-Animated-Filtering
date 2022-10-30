@@ -1,4 +1,4 @@
-import './App.css';
+import './App.css'
 import {useState, useEffect} from 'react'
 import MovieCard from "./components/MovieCard";
 
@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="container">
       {card.map((movie)=>{
-        return <MovieCard />
+        return <MovieCard key={movie.id} movie={movie}/>
       })}
       
     </div>
