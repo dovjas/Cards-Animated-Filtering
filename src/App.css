@@ -28,3 +28,6 @@ button{
 button:hover{
     color: #fff;
 }
+.active{
+    background-color: gray;
+}

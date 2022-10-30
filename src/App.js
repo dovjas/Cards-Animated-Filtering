@@ -1,5 +1,6 @@
 import './App.css'
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
+import {motion} from 'framer-motion';
 import MovieCard from "./components/MovieCard";
 import Filter from "./components/Filter";
 
@@ -17,9 +18,8 @@ function App() {
     const data = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=279af113db8abf9ba3623e4085ea611b');
     const movies = await data.json();
 
-    console.log(movies);
     setCard(movies.results);
-    setFiltered(filtered.results)
+    setFiltered(movies.results);
   }
 
 
@@ -31,11 +31,17 @@ function App() {
         selectedGenre={selectedGenre} 
         setSelectedGenre={setSelectedGenre}
       />
-        <div className="movies-block">
-        {card.map((movie)=>{
-          return <MovieCard key={movie.id} movie={movie}/>
-        })}
-      </div>
+        <motion.div 
+          animate={{opacity:1}} 
+          initial={{opacity:0}}
+          exit={{opacity:0}}
+          layout 
+          className="movies-block"
+        >
+          {filtered.map((movie)=>{
+            return <MovieCard key={movie.id} movie={movie}/>
+          })}
+        </motion.div>
     </div>
   );
 }
